@@ -40,21 +40,28 @@ public class BootstrapData implements CommandLineRunner {
 
         Author agatha = new Author("Agatha", "Christie");
         Book murderOfRoger = new Book("Murder of Roger", "12221");
+        murderOfRoger.setPublisher(pub);
 
         agatha.getBooks().add(murderOfRoger);
         murderOfRoger.getAuthors().add(agatha);
+        pub.getBooks().add(murderOfRoger);
 
         authorRepository.save(agatha);
         bookRepository.save(murderOfRoger);
+        publisherRepository.save(pub);
 
         Author chetan = new Author("Chetan", "Bhagat");
         Book OneIndianGirl = new Book("One Indian Girl", "1234");
 
         chetan.getBooks().add(OneIndianGirl);
         OneIndianGirl.getAuthors().add(chetan);
+        pub.getBooks().add(OneIndianGirl);
 
         authorRepository.save(chetan);
         bookRepository.save(OneIndianGirl);
+        publisherRepository.save(pub);
+
+        System.out.println("Total books for Publisher pub : " + pub.getBooks().size());
 
         System.out.println("Total books :" + bookRepository.count());
         System.out.println("Ran Successfully");
